@@ -26,6 +26,7 @@ using AdventOfCode2024.Day_2;
 
 string secondfilePath = @"..\..\..\Day 2\Numbers.txt";
 string[] lineNumbers = File.ReadAllLines(secondfilePath);
+int safeTolerate = 0;
 int safe = 0;
 SecondDay secondDay = new SecondDay();
 int index = 0;
@@ -39,5 +40,7 @@ foreach(string l in lineNumbers)
 			line.Add(number);
 	}
 	safe += secondDay.SafeList(line);
+	safeTolerate += secondDay.SafeTolerate(line);
 }
 Console.WriteLine(safe);
+Console.WriteLine(safeTolerate);

@@ -16,4 +16,19 @@ internal class SecondDay
 		}
 		return 1;
 	}
+	public int SafeTolerate(List<int> line)
+	{
+		int safe = SafeList(line);
+		if (safe == 0)
+		{
+			for (int i = 0; i < line.Count; i++)
+			{ 
+				if (i < line.Count - 1 && SafeList(line.Take(i).Concat(line.Skip(i + 1)).ToList()) == 1)
+					return 1;
+				if (i == line.Count - 1)
+					return SafeList(line.Take(i).ToList());
+			} 
+		}
+		return safe;
+	}
 }
