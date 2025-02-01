@@ -5,6 +5,7 @@ using AdventOfCode2024.Day_2;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text.RegularExpressions;
 using AdventOfCode2024.Day_3;
+using AdventOfCode2024.Day_4;
 
 //DAY 1
 //List<int> first = new List<int>();
@@ -49,10 +50,17 @@ using AdventOfCode2024.Day_3;
 //Console.WriteLine(safeTolerate);
 
 //DAY 3
-string filePath = @"..\..\..\Day 3\Text.txt";
+//string filePath = @"..\..\..\Day 3\Text.txt";
+//
+//ThirdDay thirdDay = new ThirdDay();
+//Int128 result = thirdDay.SumOfMultiplications(lines);
+//Int128 result2 = thirdDay.SumOfDoMultiplications(lines);
+//Console.WriteLine(result);
+//Console.WriteLine(result2);
+
+//DAY 4
+string filePath = @"..\..\..\Day 4\Text.txt";
 string[] lines = File.ReadAllLines(filePath);
-ThirdDay thirdDay = new ThirdDay();
-Int128 result = thirdDay.SumOfMultiplications(lines);
-Int128 result2 = thirdDay.SumOfDoMultiplications(lines);
+FourthDay fourthDay = new FourthDay();
+Int128 result = fourthDay.XmasNumber(lines);
 Console.WriteLine(result);
-Console.WriteLine(result2);
