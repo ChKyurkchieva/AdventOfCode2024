@@ -53,4 +53,6 @@ string filePath = @"..\..\..\Day 3\Text.txt";
 string[] lines = File.ReadAllLines(filePath);
 ThirdDay thirdDay = new ThirdDay();
 Int128 result = thirdDay.SumOfMultiplications(lines);
+Int128 result2 = thirdDay.SumOfDoMultiplications(lines);
 Console.WriteLine(result);
+Console.WriteLine(result2);
