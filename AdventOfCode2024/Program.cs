@@ -2,6 +2,9 @@
 
 using AdventOfCode2024.Day_1;
 using AdventOfCode2024.Day_2;
+using static System.Net.Mime.MediaTypeNames;
+using System.Text.RegularExpressions;
+using AdventOfCode2024.Day_3;
 
 //DAY 1
 //List<int> first = new List<int>();
@@ -24,23 +27,30 @@ using AdventOfCode2024.Day_2;
 
 //DAY 2
 
-string secondfilePath = @"..\..\..\Day 2\Numbers.txt";
-string[] lineNumbers = File.ReadAllLines(secondfilePath);
-int safeTolerate = 0;
-int safe = 0;
-SecondDay secondDay = new SecondDay();
-int index = 0;
-foreach(string l in lineNumbers)
-{
-	string[] parts = l.Split(" ");
-	List<int> line = new List<int>();
-	foreach (string i in parts)
-	{
-		if(int.TryParse(i, out int number))
-			line.Add(number);
-	}
-	safe += secondDay.SafeList(line);
-	safeTolerate += secondDay.SafeTolerate(line);
-}
-Console.WriteLine(safe);
-Console.WriteLine(safeTolerate);
+//string secondfilePath = @"..\..\..\Day 2\Numbers.txt";
+//string[] lineNumbers = File.ReadAllLines(secondfilePath);
+//int safeTolerate = 0;
+//int safe = 0;
+//SecondDay secondDay = new SecondDay();
+//int index = 0;
+//foreach(string l in lineNumbers)
+//{
+//	string[] parts = l.Split(" ");
+//	List<int> line = new List<int>();
+//	foreach (string i in parts)
+//	{
+//		if(int.TryParse(i, out int number))
+//			line.Add(number);
+//	}
+//	safe += secondDay.SafeList(line);
+//	safeTolerate += secondDay.SafeTolerate(line);
+//}
+//Console.WriteLine(safe);
+//Console.WriteLine(safeTolerate);
+
+//DAY 3
+string filePath = @"..\..\..\Day 3\Text.txt";
+string[] lines = File.ReadAllLines(filePath);
+ThirdDay thirdDay = new ThirdDay();
+Int128 result = thirdDay.SumOfMultiplications(lines);
+Console.WriteLine(result);
