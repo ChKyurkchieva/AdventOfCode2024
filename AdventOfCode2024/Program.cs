@@ -63,4 +63,6 @@ string filePath = @"..\..\..\Day 4\Text.txt";
 string[] lines = File.ReadAllLines(filePath);
 FourthDay fourthDay = new FourthDay();
 Int128 result = fourthDay.XmasNumber(lines);
+Int128 result1 = fourthDay.MasX(lines);
 Console.WriteLine(result);
+Console.WriteLine(result1);
