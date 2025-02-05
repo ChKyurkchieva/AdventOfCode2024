@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using AdventOfCode2024.Day_2;
+using System.Data;
 using System.Data.Common;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -8,19 +9,16 @@ namespace AdventOfCode2024.Day_5;
 internal class FifthDay
 {
 	private List<List<int>> _graph;
-	public FifthDay(string[] text) => _graph = CreateGraph(text);
-	public List<List<int>> CreateGraph(string[] text)
+	private List<(int, int)> _rules;
+	public FifthDay(string[] text)
 	{
-		List<List<int>> graph = new List<List<int>>();
-		for (int i = 1; i < 100; i++)
-		{
-			graph.Add(new List<int>());
-		}
+		_rules = Rules(text);
+	}
+	public List<(int, int)> Rules(string[] text)
+	{
+		_rules = new List<(int, int)>();
 		foreach (string line in text)
 		{
-			if (line == string.Empty || !line.Contains('|'))
-				return graph;
-
 			var match = Regex.Match(line, @"([0-9]+)\|([0-9]+)");
 			if (match.Success)
 			{
@@ -28,61 +26,10 @@ internal class FifthDay
 				var b = match.Groups[2];
 				int.TryParse(a.ToString(), out int first);
 				int.TryParse(b.ToString(), out int second);
-				graph[first].Add(second);
+				_rules.Add((first,second));
 			}
 		}
-		return graph;
-	}
-	public static void DisplayGraph(List<List<int>> graph)
-	{
-		for (int i = 0; i < graph.Count; i++)
-		{
-			Console.Write($"{i}: "); // Print the vertex
-			foreach (int j in graph[i])
-			{
-				Console.Write($"{j} "); // Print its adjacent
-			}
-			Console.WriteLine();
-		}
-	}
-	public  bool IsSubsequence(List<int> numbers, List<int> sequence)
-	{
-		if(numbers.Count == 0) return false;
-		List<int> indeces = new List<int>();
-		foreach (int n in sequence)
-			indeces.Add(numbers.IndexOf(n));
-		var ordered = indeces.Order();
-		for (int i = 0; i < ordered.Count(); i++)
-			if (ordered.ElementAt(i) != indeces[i]) return false;
-
-		return true;
-	}
-	private void DepthFirstSearch(int start, List<int> path)
-	{
-		Boolean[] visited = new Boolean[100];
-
-		Stack<int> stack = new Stack<int>();
-
-		stack.Push(start);
-
-		while (stack.Count > 0)
-		{
-			start = stack.Peek();
-			stack.Pop();
-
-			if (visited[start] == false)
-			{
-				path.Add(start);
-				visited[start] = true;
-			}
-
-			foreach (int v in _graph[start])
-			{
-				if (!visited[v] && _graph[v].Count > 0)
-					stack.Push(v);
-			}
-
-		}
+		return _rules;
 	}
 
 	public int SubsequencesMultiplication(string[] text)
@@ -104,14 +51,19 @@ internal class FifthDay
 				for (int i = 0; i < sequence.Count - 1; i++)
 				{
 					List<int> candidate = new List<int>();
-					DepthFirstSearch(sequence[i], candidate);
-					if (!candidate.Contains(sequence[i + 1]))
+					if (_rules.Contains((sequence[i], sequence[0])) || _rules.Contains((sequence[i+1], sequence[i])))
 						break;
 					if (i + 1 == sequence.Count - 1)
 						result += sequence[sequence.Count / 2];
 				}
 			}
 		}
+		return result;
+	}
+
+	public int RepairSubsequence(string[] text)
+	{
+		int result = 0;
 		return result;
 	}
 }
