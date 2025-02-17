@@ -79,5 +79,9 @@ using AdventOfCode2024.Day_5;
 	string[] lines = File.ReadAllLines(filePath);
 	FifthDay fifthDay = new FifthDay(lines);
 	int result = fifthDay.SubsequencesMultiplication(lines);
+	string[] little = new string[1];
+	//little[0] = "49,76,62,16,22,25,27,41,34,35,95,78,14";
+	int result2 = fifthDay.RepairSubsequence(lines);
 	Console.WriteLine(result);
+	Console.WriteLine(result2);
 }
