@@ -9,29 +9,16 @@ internal class SeventhDay
 	{
 		BigInteger result = 0;
 		string filePath = @"..\..\..\Day 7\Input.txt";
-		string[] lines = File.ReadAllLines(filePath);
-		foreach (string line in lines)
-		{
-			MatchCollection matches = Regex.Matches(line, "([0-9]+){1}");
-			if (matches.Count > 0)
-			{
-				List<UInt128> numbers = ExtractNumbersToList(matches);
-				result = FindCalibrationsNumber(powerBase, result, numbers);
-			}
-		}
+		static List<UInt128> SplitLine(string line) =>
+			line
+			.Split([' ', ':'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+			.Select(UInt128.Parse).ToList();
+		List<List<UInt128>> input =
+			File.ReadAllLines(filePath)
+			.Select(SplitLine)
+			.ToList();
+		input.ForEach(x => result = FindCalibrationsNumber(powerBase, result, x));
 		return result;
-	}
-
-	private static List<UInt128> ExtractNumbersToList(MatchCollection matches)
-	{
-		List<UInt128> numbers = new(matches.Count);
-		for (int i = 0; i < matches.Count; i++)
-		{
-			if (UInt128.TryParse(matches.ElementAt(i).ToString(), out UInt128 n))
-				numbers.Add(n);
-		}
-
-		return numbers;
 	}
 
 	private static BigInteger FindCalibrationsNumber(int powerBase, BigInteger result, List<UInt128> numbers)
@@ -70,30 +57,18 @@ internal class SeventhDay
 		return candidate;
 	}
 
-	public static string[] GenerateAllPermutations(int powerBase, int n)
-	{
-		int size = (int)Math.Pow(powerBase, n);
-		string[] result = new string[size];
-		for (int i = 0; i < size; i++)
-		{
-			//string binary = Convert.ToString(i, powerBase).PadLeft(n, '0');
-			//result[i] = binary;
-			result[i] = ConvertToBase(i, powerBase, n); 
-		}
-		return result;
-	}
+	public static string[] GenerateAllPermutations(int powerBase, int n) =>
+		Enumerable.Range(0, (int)Math.Pow(powerBase, n))
+				  .Select(x => ConvertToBase(x, powerBase, n)).ToArray();
 
 	private static string ConvertToBase(int num, int powerBase, int length)
 	{
-		char[] result = new char[length];
-
-		for (int i = length - 1; i >= 0; i--)
+		var result = Enumerable.Range(0, length).Aggregate(new List<char>(length), (result, i) =>
 		{
-			result[i] = (char)('0' + (num % powerBase));
+			result.Add((char)('0' + (num % powerBase)));
 			num /= powerBase;
-		}
-
+			return result;
+		}).Reverse<char>().ToArray();
 		return new string(result);
 	}
-
 }
