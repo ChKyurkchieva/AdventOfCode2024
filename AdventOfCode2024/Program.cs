@@ -5,6 +5,8 @@ using System.Text.RegularExpressions;
 using AdventOfCode2024.Day_3;
 using AdventOfCode2024.Day_4;
 using AdventOfCode2024.Day_5;
+using AdventOfCode2024.Day_6;
+using AdventOfCode2024.Day_7;
 
 ////DAY 1
 //{
@@ -74,14 +76,28 @@ using AdventOfCode2024.Day_5;
 //}
 
 //DAY 5
-{
-	string filePath = @"..\..\..\Day 5\Input.txt";
-	string[] lines = File.ReadAllLines(filePath);
-	FifthDay fifthDay = new FifthDay(lines);
-	int result = fifthDay.SubsequencesMultiplication(lines);
-	string[] little = new string[1];
-	//little[0] = "49,76,62,16,22,25,27,41,34,35,95,78,14";
-	int result2 = fifthDay.RepairSubsequence(lines);
-	Console.WriteLine(result);
-	Console.WriteLine(result2);
-}
+//{
+//	string filePath = @"..\..\..\Day 5\Input.txt";
+//	string[] lines = File.ReadAllLines(filePath);
+//	FifthDay fifthDay = new FifthDay(lines);
+//	int result = fifthDay.SubsequencesMultiplication(lines);
+//	string[] little = new string[1];
+//	//little[0] = "49,76,62,16,22,25,27,41,34,35,95,78,14";
+//	int result2 = fifthDay.RepairSubsequence(lines);
+//	Console.WriteLine(result);
+//	Console.WriteLine(result2);
+//}
+
+//DAY 6
+//{
+//	string filePath = @"..\..\..\Day 6\Input.txt";
+//	string[] lines = File.ReadAllLines(filePath);
+//	SixthDay sixthDay = new SixthDay();
+//	int result = sixthDay.GetWayOut(lines);
+//	Console.WriteLine(result);
+//}
+
+//DAY 7
+
+UInt128 result = SeventhDay.FindTotalCalibrationResult();
+Console.WriteLine(result);

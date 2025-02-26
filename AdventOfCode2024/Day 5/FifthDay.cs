@@ -133,7 +133,6 @@ internal class FifthDay
 			string[] numbers = line.Split(',');
 			List<string> order = new List<string>();
 			order.Clear();
-			//order.Capacity = numbers.Length;
 			order.Add(numbers[0]);
 			for (int i = 1; i < numbers.Length; i++)
 			{
