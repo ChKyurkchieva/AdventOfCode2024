@@ -7,6 +7,7 @@ using AdventOfCode2024.Day_4;
 using AdventOfCode2024.Day_5;
 using AdventOfCode2024.Day_6;
 using AdventOfCode2024.Day_7;
+using System.Numerics;
 
 ////DAY 1
 //{
@@ -99,5 +100,8 @@ using AdventOfCode2024.Day_7;
 
 //DAY 7
 
-UInt128 result = SeventhDay.FindTotalCalibrationResult();
-Console.WriteLine(result);
+BigInteger result1 = SeventhDay.FindTotalCalibrationResult(2);
+Console.WriteLine(result1);
+//SeventhDay.GenerateAllPermutations(3, 4);
+BigInteger result2 = SeventhDay.FindTotalCalibrationResult(3);
+Console.WriteLine(result2);
